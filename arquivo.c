@@ -8,6 +8,11 @@ typedef struct {
     int x, y;
 } Coordenada;
 
+double calcularDistancia(int x1, int y1, int x2, int y2) {
+    double distX = x1 - x2;
+    double distY = y1 - y2;
+    return sqrt(distX * distX + distY * distY);
+}
 
 double** criarMatrizAdjacencia(Coordenada *coordenadas, int N) {
     double **matrizAdjacencia = (double **)malloc(N * sizeof(double *));
@@ -33,4 +38,40 @@ void liberarMatrizAdjacencia(double **matrizAdjacencia, int N) {
         free(matrizAdjacencia[i]);
     }
     free(matrizAdjacencia);
+}
+
+Coordenada* leArquivo(const char *nomeArquivo, int *numCoordenadas) {
+    FILE *file = fopen(nomeArquivo, "r");
+
+    if (file == NULL) {
+        fprintf(stderr, "Erro ao abrir o arquivo.\n");
+        return NULL;
+    }
+
+    int N;
+    if (fscanf(file, "%d", &N) != 1) {
+        fprintf(stderr, "Erro ao ler N.\n");
+        fclose(file);
+        return NULL;
+    }
+
+    Coordenada *coordenadas = (Coordenada *)malloc(N * sizeof(Coordenada));
+    if (coordenadas == NULL) {
+        fprintf(stderr, "Erro ao alocar memória.\n");
+        fclose(file);
+        return NULL;
+    }
+
+    for (int i = 0; i < N; i++) {
+        if (fscanf(file, "%d %d", &coordenadas[i].x, &coordenadas[i].y) != 2) {
+            fprintf(stderr, "Erro ao ler o par x e y.\n");
+            free(coordenadas);
+            fclose(file);
+            return NULL;
+        }
+    }
+
+    *numCoordenadas = N;
+    fclose(file);
+    return coordenadas;
 }
