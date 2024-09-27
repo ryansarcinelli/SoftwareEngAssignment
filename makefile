@@ -1,6 +1,6 @@
 all: compila executa clean
 compila: main.o algoritmo.o arquivo.o
-	gcc main.c algoritmo.c arquivo.c -o grafo
+	gcc main.c algoritmo.c arquivo.c -o grafo -lm
 main.o: main.c
 	gcc -c main.c
 algoritmo.o: algoritmo.c
