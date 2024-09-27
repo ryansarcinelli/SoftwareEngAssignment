@@ -1,6 +1,12 @@
 Projeto de Conexão de Computadores - Árvore de Caminho Mínimo de Borůvka
+
+
 Feito por: Lukas Rodrigues Basilio e Ryan Carlos Sarcinelli
-Descrição
+
+
+Descrição:
+
+
 Este projeto tem como objetivo calcular a quantidade mínima de cabos necessária para conectar todos os computadores em um laboratório de informática. Utilizando o algoritmo de Árvore de Caminho Mínimo de Borůvka, o programa encontra a solução mais eficiente para conectar os N computadores, com o menor comprimento total de cabos.
 
 Instalação
